@@ -55,22 +55,28 @@ let bankInfo = {
     ],
     transaction:[]
 };
-
-
+const renderNewState = (state) => {
+  let newState = {...state};
+  return newState;
+}
 const activityReducer = (state, action) => {
     switch (action.type) {
         case 'DEPOSIT_MONEY':
-            let balance = parseFloat(state.accounts[action.payload.accountId-1].balance);
-            let deposit = parseFloat(action.payload.amount);
-            balance += deposit
-            state.accounts[action.payload.accountId-1].balance = balance;
-            console.log("Added");
-            console.log(state.accounts[action.payload.accountId-1].balance)
-            console.log(state)
-            state.transaction.push(action.payload);
-            return state;
+          let balance = parseFloat(state.accounts[action.payload.accountId-1].balance);
+          let deposit = parseFloat(action.payload.amount);
+          balance += deposit
+          state.accounts[action.payload.accountId-1].balance = balance;
+          state.transaction.push(action.payload);
+          return {accounts:[...state.accounts],transaction:[...state.transaction]};
+        case 'WITHDRAW_MONEY':
+          let balance2 = parseFloat(state.accounts[action.payload.accountId-1].balance);
+          let withdrawal = parseFloat(action.payload.amount);
+          balance2 -= withdrawal
+          state.accounts[action.payload.accountId-1].balance = balance2;
+          state.transaction.push(action.payload);
+          return {accounts:[...state.accounts],transaction:[...state.transaction]};
         default:
-            return bankInfo;
+            return !state ? renderNewState(bankInfo) : state;
     }
 }
 

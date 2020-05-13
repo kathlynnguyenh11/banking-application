@@ -42,13 +42,15 @@ class App extends React.Component {
   render() {
     return(
       <div>
-        <h1>Banking Application</h1>
-        <BrowserRouter>
-          <div>
-            <Route path="/" exact component={AccountList}/>
-            <Route path="/page/:name" component={AccountPage} />
-          </div>
-        </BrowserRouter>
+        <div className="text-center">
+          <h1 className="jumbotron-heading">Banking Application</h1>
+            <BrowserRouter>
+              <div>
+                <Route path="/" exact component={AccountList}/>
+                <Route path="/page/:name" component={AccountPage}/>
+              </div>
+            </BrowserRouter>
+        </div> 
       </div>
     )
     

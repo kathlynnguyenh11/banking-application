@@ -8,7 +8,7 @@ class DepositMoney extends React.Component {
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    this.props.depositMoney(this.props.accountId, this.state.amount);
+    this.props.depositMoney(this.props.accountId, this.state.amount, "Deposit");
     this.setState({ accountId: '', amount: '' });
   }
 

@@ -18,20 +18,20 @@ export const dataRequestFailed = (err) => ({
     type: 'DATA_FAILED', err,
 }) 
 
-export const depositMoney = (accountId, amount) => {
+export const depositMoney = (accountId, amount, activity) => {
     return {
       type: 'DEPOSIT_MONEY',
       payload: {
-        accountId, amount
+        accountId, activity, amount
       }
     }
   }
   
-export const withdrawMoney = (accountId, amount) => {
+export const withdrawMoney = (accountId, amount, activity) => {
     return {
       type: 'WITHDRAW_MONEY',
       payload: {
-        accountId, amount
+        accountId, activity, amount
       }
     }
   }

@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import axios from 'axios';
 
 class AccountList extends React.Component{
     render(){
-        console.log(this.props.accounts);
         let renderedList = this.props.accounts.map((account)=>{
             return(
                 <tr key={account._id}>
@@ -18,14 +16,14 @@ class AccountList extends React.Component{
                             state:{
                                 data: account
                             } 
-                        }}>Link</Link>
+                        }}>Here</Link>
                     </td>
                 </tr>
             )
         })
 
         return(
-            <table className="table table-striped">
+            <table className="table table-hover table-striped ">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
