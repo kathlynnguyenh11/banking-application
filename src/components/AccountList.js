@@ -1,14 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { deleteAccount } from "../actions";
 
 class AccountList extends React.Component{
     render(){
         let renderedList = this.props.accounts.map((account)=>{
             return(
-                <tr key={account._id}>
+                <tr key={account.id}>
                     <td>{account._id}</td>
-                    <td>{account.name}</td>
+                    <td>
+                        {account.name} 
+                        <button type='button'
+                                onClick={() => { this.props.deleteAccount(account.id) }}
+                                className='btn btn-danger'
+                                style={{ float: 'right' }}>
+                                Delete
+                        </button>
+                    </td>
                     <td>${account.balance}</td>
                     <td>
                         <Link to={{
@@ -35,7 +44,6 @@ class AccountList extends React.Component{
                 <tbody>
                     {renderedList}
                 </tbody>
-                
             </table>      
         )
     }
@@ -46,5 +54,4 @@ const mapStateToProps = state => {
     };
   };
 
-export default connect(mapStateToProps)(AccountList);
-
+export default connect(mapStateToProps, { deleteAccount })(AccountList);
